@@ -19,7 +19,7 @@ public class UsuarioDAO {
 	}
 	
 	public int add(Usuario u) throws Exception{
-		stmt = con.prepareStatement("INSERT INTO USUARIO(cpf, nome, email, senha) VALUES(?,?,?,?)");
+		stmt = con.prepareStatement("INSERT INTO USUARIO(USUARIO_CPF, USUARIO_NOME, USUARIO_EMAIL, USUARIO_SENHA) VALUES(?,?,?,?)");
 		stmt.setString(1, u.getCpf());
 		stmt.setString(2, u.getNome());
 		stmt.setString(3, u.getEmail());
@@ -28,13 +28,24 @@ public class UsuarioDAO {
 	}
 	
 	public Usuario get(String cpf) throws Exception{
-		stmt = con.prepareStatement("SELECT * FROM USUARIO WHERE cpf = ?");
+		stmt = con.prepareStatement("SELECT * FROM USUARIO WHERE USUARIO_CPF = ?");
 		stmt.setString(1, cpf);
+		
+		rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			return new Usuario(
+					rs.getString("USUARIO_NOME"),
+					rs.getString("USUARIO_EMAIL"),
+					rs.getString("USUARIO_CPF"),
+					rs.getString("USUARIO_SENHA")
+					);
+		}
 		
 		return new Usuario();
 	}
 	
-	public void closeConnection() throws SQLException {
+	public void close() throws SQLException {
 		con.close();
 	}
 	

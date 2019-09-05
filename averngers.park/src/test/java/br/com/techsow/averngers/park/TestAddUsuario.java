@@ -2,8 +2,9 @@ package br.com.techsow.averngers.park;
 
 import br.com.averngers.park.beans.Usuario;
 import br.com.fiap.averngers.park.dao.UsuarioDAO;
+import junit.framework.TestCase;
 
-public class TestAddUsuario extends TestCase{
+public class TestAddUsuario{
 	public static void Main(String[] args) {
 		
 		UsuarioDAO dao = null;

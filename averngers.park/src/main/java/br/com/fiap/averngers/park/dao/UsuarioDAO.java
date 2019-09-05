@@ -45,6 +45,13 @@ public class UsuarioDAO {
 		return new Usuario();
 	}
 	
+	public int kill(String cpf) throws Exception{
+		stmt = con.prepareStatement("DELETE FROM USUARIO WHERE USUARIO_CPF = ?");
+		stmt.setString(1, cpf);
+		return stmt.executeUpdate();
+		
+	}
+	
 	public void close() throws SQLException {
 		con.close();
 	}

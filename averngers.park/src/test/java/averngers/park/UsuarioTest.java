@@ -1,6 +1,5 @@
 package averngers.park;
 
-import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -12,11 +11,47 @@ public class UsuarioTest {
 	
 	
 	
-	@Before
-	public void antesDoTeste() {
-		System.out.println("isso vai ser iniciado antes do teste");
+	@Ignore
+	public void testKillUsuario() throws Exception {
+		UsuarioDAO dao = null;
+		try {
+			dao = new UsuarioDAO();
+			
+			Assert.assertEquals(1, dao.kill("teste"));
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				dao.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		
 	}
+	
+
+	@Ignore
+	public void testGetUsuario() {
+		UsuarioDAO dao = null;
+		try {
+			dao = new UsuarioDAO();
+			
+			Assert.assertEquals("teste", dao.get("teste").getCpf());
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				dao.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	
 	@Ignore
 	public void testIsCreated() {
@@ -38,26 +73,5 @@ public class UsuarioTest {
 		}
 		
 	}
-	
-	@Test
-	public void testGetUsuario() {
-		UsuarioDAO dao = null;
-		try {
-			dao = new UsuarioDAO();
-			
-			Usuario u = new Usuario("teste","teste","teste","teste");
-			Assert.assertEquals("teste", dao.get("teste").getCpf());
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				dao.close();
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
 	
 }

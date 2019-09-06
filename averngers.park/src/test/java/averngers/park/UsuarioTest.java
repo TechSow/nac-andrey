@@ -1,9 +1,8 @@
 package averngers.park;
 
 import org.junit.Ignore;
-import org.junit.Test;
 
-import br.com.averngers.park.beans.Usuario;
+import br.com.fiap.averngers.park.beans.Usuario;
 import br.com.fiap.averngers.park.dao.UsuarioDAO;
 import junit.framework.Assert;
 

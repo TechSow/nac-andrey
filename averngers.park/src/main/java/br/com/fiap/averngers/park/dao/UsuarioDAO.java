@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import br.com.averngers.park.beans.Usuario;
+import br.com.fiap.averngers.park.beans.Usuario;
 import br.com.fiap.averngers.park.conexao.Conexao;
 
 public class UsuarioDAO {

@@ -1,4 +1,4 @@
-package br.com.averngers.park.beans;
+package br.com.fiap.averngers.park.beans;
 
 public class Usuario {
 	private String nome,email,cpf,senha;

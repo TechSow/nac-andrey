@@ -11,8 +11,8 @@
 
 <% 
 
-	Usuario usuario = new Usuario();
-	usuario.setCpf(request.getParameter("cpf"));
+	
+	Usuario usuario = (Usuario) request.getAttribute("usuario");
 	
 	out.println(usuario.getCpf());
 

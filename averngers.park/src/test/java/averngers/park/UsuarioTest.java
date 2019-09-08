@@ -1,8 +1,13 @@
 package averngers.park;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Ignore;
+import org.junit.Test;
 
 import br.com.fiap.averngers.park.beans.Usuario;
+import br.com.fiap.averngers.park.bo.UsuarioBO;
 import br.com.fiap.averngers.park.dao.UsuarioDAO;
 import junit.framework.Assert;
 
@@ -70,6 +75,14 @@ public class UsuarioTest {
 				e.printStackTrace();
 			}
 		}
+		
+	}
+
+	@Test
+	public void testIsCpf() {
+		UsuarioBO bo = new UsuarioBO();
+		
+		Assert.assertTrue(bo.validarCpf("503.386.998-10"));
 		
 	}
 	

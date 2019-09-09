@@ -37,13 +37,16 @@ public class UsuarioTest {
 	}
 	
 
-	@Ignore
+	@Test
 	public void testGetUsuario() {
 		UsuarioDAO dao = null;
 		try {
 			dao = new UsuarioDAO();
+			Usuario user = dao.get("13");
+			System.out.println("fueda");
+			System.out.println(user.getNome());
 			
-			Assert.assertEquals("teste", dao.get("teste").getCpf());
+			Assert.assertEquals("13", dao.get("13").getCpf());
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -78,7 +81,7 @@ public class UsuarioTest {
 		
 	}
 
-	@Test
+	@Ignore
 	public void testIsCpf() {
 		UsuarioBO bo = new UsuarioBO();
 		

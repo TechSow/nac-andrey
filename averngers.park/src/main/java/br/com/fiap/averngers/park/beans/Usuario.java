@@ -43,6 +43,11 @@ public class Usuario {
 	}
 	
 	public Usuario() {}
+
+	@Override
+	public String toString() {
+		return "Usuario [nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", senha=" + senha + "]";
+	}
 	
 	
 }

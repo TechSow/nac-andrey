@@ -2,6 +2,9 @@ package br.com.fiap.averngers.park.bo;
 
 import java.util.InputMismatchException;
 
+import br.com.fiap.averngers.park.beans.Usuario;
+import br.com.fiap.averngers.park.dao.UsuarioDAO;
+
 public class UsuarioBO {
 	private boolean isCpf(String cpf) {
 		if (cpf.equals("00000000000") || cpf.equals("11111111111") || cpf.equals("22222222222")
@@ -64,7 +67,25 @@ public class UsuarioBO {
 	public boolean validarCpf(String cpf) {
 
 		return isCpf(cpf.replaceAll("[./-]", ""));
-			
+
 	}
 
+	public Usuario get(String cpf) {
+		UsuarioDAO dao = null;
+		Usuario usuario = null;
+		try {
+			dao = new UsuarioDAO();
+			usuario = dao.get(cpf);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+
+				dao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return usuario;
+	}
 }

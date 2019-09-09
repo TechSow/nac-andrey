@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% Usuario usuario =  (Usuario) request.getAttribute("usuario"); %>
+<% Usuario usuario =  (Usuario) request.getAttribute("user"); %>
 <%= usuario.toString() %>
 funciona o dispatcher pelo menos
 </body>

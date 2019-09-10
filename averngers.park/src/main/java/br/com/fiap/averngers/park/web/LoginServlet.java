@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		resp.setContentType("text/html;charset=UTF-8");
+		resp.setContentType("text/html");
 		
 		String email = req.getParameter("email");
 		String senha = req.getParameter("senha");
@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet{
 				 * resp.addCookie(message);
 				 */
 	            
-	            resp.sendRedirect("principal.html");
+	            resp.sendRedirect("/principal.html");
 	        } else {
 	            RequestDispatcher rd = getServletContext().getRequestDispatcher("/Login.html");
 	            PrintWriter out = resp.getWriter();
@@ -59,7 +59,6 @@ public class LoginServlet extends HttpServlet{
 	            rd.include(req, resp);
 	        }
 						
-			
 		} catch (Exception e) {
 
 

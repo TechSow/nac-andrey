@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import br.com.fiap.averngers.park.beans.Usuario;
 import br.com.fiap.averngers.park.conexao.Conexao;
 
-public class UsuarioDAO {
+public class UsuarioDAO{
 
 	private Connection con;
 	private PreparedStatement stmt;

@@ -88,6 +88,7 @@ public class UsuarioBO {
 		}
 		return usuario;
 	}
+<<<<<<< HEAD
 
 
 	public int login(String cpf, String senha) throws Exception{
@@ -97,6 +98,17 @@ public class UsuarioBO {
 
 		if(dao.login(cpf, senha) == 1) {
 
+=======
+	
+	
+public int login(String email, String senha) throws Exception{
+		
+	
+		UsuarioDAO dao = new UsuarioDAO();
+		
+		if(dao.login(email, senha) == 1) {
+			
+>>>>>>> b7ff4dfb7c1761a5db361d049bb0a67cee76dafc
 			return 1;
 		}
 		else {

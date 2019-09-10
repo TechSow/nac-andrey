@@ -21,12 +21,15 @@ public class LoginServlet extends HttpServlet{
 
 	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		resp.setContentType("text/html;charset=UTF-8");
+		resp.setContentType("text/html");
 		
-		String email = req.getParameter("email");
-		String senha = req.getParameter("senha");
+		
+		 String email = req.getParameter("email"); 
+		 String senha = req.getParameter("senha_login");
+		 
+
 		
 		UsuarioBO bo = null;
 		
@@ -59,7 +62,6 @@ public class LoginServlet extends HttpServlet{
 	            rd.include(req, resp);
 	        }
 						
-			
 		} catch (Exception e) {
 
 

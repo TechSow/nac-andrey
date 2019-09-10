@@ -45,6 +45,25 @@ public class UsuarioDAO {
 		return new Usuario();
 	}
 	
+	
+	public int login(String cpf, String senha) throws Exception{
+		
+		stmt = con.prepareStatement("SELECT USUARIO_CPF, USUARIO_SENHA FROM USUARIO WHERE USUARIO_CPF=? AND USUARIO_SENHA=?");
+		
+		stmt.setString(1, cpf);
+		stmt.setString(2, senha);
+		
+		rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			return 1;
+		}else {
+			return 0;
+		}
+		
+	}
+	
+	
 	public int kill(String cpf) throws Exception{
 		stmt = con.prepareStatement("DELETE FROM USUARIO WHERE USUARIO_CPF = ?");
 		stmt.setString(1, cpf);

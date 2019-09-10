@@ -52,7 +52,7 @@ public class UsuarioDAO implements IUsuarioRepositorio {
 		return stmt.executeUpdate();
 
 	}
-	
+
 
 	@Override
 	public void close() throws SQLException {
@@ -60,9 +60,19 @@ public class UsuarioDAO implements IUsuarioRepositorio {
 	}
 
 	@Override
-	public int login(String cpf, String senha) throws Exception {
+	public int login(String email, String senha) throws Exception {
 
-		return 0;
+		stmt = con.prepareStatement("SELECT USUARIO_NOME, USUARIO_SENHA FROM USUARIO WHERE USUARIO_EMAIL=? AND USUARIO_SENHA=?");
+		stmt.setString(1, email);
+		stmt.setString(2, senha);
+
+		rs = stmt.executeQuery();
+		if(rs.next()) {
+			return 1;
+		}else {
+
+			return 0;
+		}
 	}
 
 }

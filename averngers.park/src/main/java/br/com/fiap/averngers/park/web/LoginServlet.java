@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet{
 			bo = new UsuarioBO();
 			if(bo.login(email, senha) == 1 ) {
 				
-				
+				//Pega a session da req e invalida ela
 				HttpSession oldSession = req.getSession(false);
 	            if (oldSession != null) {
 	                oldSession.invalidate();

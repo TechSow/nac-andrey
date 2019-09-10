@@ -1,40 +1,61 @@
 package br.com.fiap.averngers.park.web;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import br.com.fiap.averngers.park.dao.UsuarioDAO;
+import br.com.fiap.averngers.park.bo.UsuarioBO;
 
-@WebServlet("/login")
+@WebServlet(urlPatterns="/login")
 public class LoginServlet extends HttpServlet{
 
 	private static final long serialVersionUID = -3818762630165473708L;
 
 	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		resp.setContentType("text/html;charset=UTF-8");
 		
 		String email = req.getParameter("email");
 		String senha = req.getParameter("senha_login");
 		
-		UsuarioDAO dao = null;
+		UsuarioBO bo = null;
 		
 		try {
-			dao = new UsuarioDAO();
-			if(dao.login(email, senha) == 1 ) {
+
+			bo = new UsuarioBO();
+			if(bo.login(email, senha) == 1 ) {
 				
 				
-				
-				
-			}
-			
+				HttpSession oldSession = req.getSession(false);
+	            if (oldSession != null) {
+	                oldSession.invalidate();
+	            }
+	            //generate a new session
+	            HttpSession newSession = req.getSession(true);
+
+	            //setting session to expiry in 5 mins
+	            newSession.setMaxInactiveInterval(5*60);
+
+	            Cookie message = new Cookie("message", "Welcome");
+	            resp.addCookie(message);
+	            resp.sendRedirect("principal.html");
+	        } else {
+	            RequestDispatcher rd = getServletContext().getRequestDispatcher("/Login.html");
+	            PrintWriter out = resp.getWriter();
+	            out.println("<font color=white>Usuario ou senha errado. Tente novamente.</font>");
+	            rd.include(req, resp);
+	        }
+						
 			
 		} catch (Exception e) {
 

@@ -88,4 +88,21 @@ public class UsuarioBO {
 		}
 		return usuario;
 	}
+	
+	
+public int login(String cpf, String senha) throws Exception{
+		
+	
+		UsuarioDAO dao = new UsuarioDAO();
+		
+		if(dao.login(cpf, senha) == 1) {
+			
+			return 1;
+		}
+		else {
+			return 0;
+		}
+	
+	}
+	
 }

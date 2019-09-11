@@ -1,7 +1,7 @@
 package br.com.fiap.averngers.park.repositorio;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 import br.com.fiap.averngers.park.beans.Valet;
 

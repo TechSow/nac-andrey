@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 import br.com.fiap.averngers.park.beans.Valet;
 import br.com.fiap.averngers.park.beans.Veiculo;
@@ -71,8 +71,11 @@ public class ValetDAO implements IValetRepositorio {
 
 	@Override
 	public int setPaymentUnpark(int id, Date saida, double preco) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		stmt = con.prepareStatement("UPDATE Valet set SAIDA = ?, PRECO = ? WHERE ID_VALET = ?");
+		stmt.setDate(1, saida);
+		stmt.setDouble(2, preco);
+		stmt.setInt(3, id);
+		return stmt.executeUpdate();
 	}
 
 	@Override

@@ -10,7 +10,7 @@ public class Valet {
 
 	public Valet() {}
 	
-	public Valet(int idValet, int idVeiuculo, Date entrada, Date saida, double preco, Veiculo veiculo) {
+	public Valet(int idValet, Date entrada, Date saida, double preco, Veiculo veiculo) {
 		super();
 		this.idValet = idValet;
 		this.setVeiculo(veiculo);

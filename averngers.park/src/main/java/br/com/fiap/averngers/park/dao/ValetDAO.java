@@ -12,7 +12,7 @@ import br.com.fiap.averngers.park.beans.Veiculo;
 import br.com.fiap.averngers.park.conexao.Conexao;
 import br.com.fiap.averngers.park.repositorio.IValetRepositorio;
 
-public class ValetDAO implements IValetRepositorio{
+public class ValetDAO implements IValetRepositorio {
 
 	private Connection con;
 	private PreparedStatement stmt;
@@ -21,35 +21,52 @@ public class ValetDAO implements IValetRepositorio{
 	public ValetDAO() throws Exception {
 		con = Conexao.conectar();
 	}
+
 	@Override
 	public Valet get(int id) throws Exception {
 		stmt = con.prepareStatement("SELECT * FROM VALET WHERE ID_VALET = ?");
 		stmt.setInt(1, id);
 		rs = stmt.executeQuery();
-		if(rs.next()) {
+		if (rs.next()) {
 			VeiculoDAO veiculoDAO = new VeiculoDAO();
 			Veiculo veiculo = veiculoDAO.get(rs.getString("PLACA_VEICULO"));
-			return new Valet(
-					rs.getInt("ID_VALET"), 
-					rs.getDate("ENTRADA"),
-					rs.getDate("SAIDA"),
-					(double) rs.getFloat("PRECO"),
-					veiculo);
-		}else {
+			Valet valet = new Valet(rs.getInt("ID_VALET"), rs.getDate("ENTRADA"), rs.getDate("SAIDA"),
+					(double) rs.getFloat("PRECO"), veiculo);
+			veiculoDAO.close();
+			return valet;
+		} else {
 			return new Valet();
 		}
 	}
 
 	@Override
 	public ArrayList<Valet> getAllParked() throws Exception {
+		ArrayList<Valet> list = null;
+		stmt = con.prepareStatement("SELECT * FROM Valet WHERE SAIDA IS NOT NULL and PRECO IS NOT NULL");
+		rs = stmt.executeQuery();
 		
-		return null;
+		VeiculoDAO veiculoDAO = new VeiculoDAO();
+		while(rs.next()) {
+			Veiculo veiculo = veiculoDAO.get(rs.getString("PLACA_VEICULO"));
+			list.add(new Valet(
+					rs.getInt("ID_VALET"),
+					rs.getDate("ENTRADA"),
+					rs.getDate("SAIDA"),
+					(double) rs.getFloat("PRECO"),
+					veiculo
+					));
+		}
+		veiculoDAO.close();
+		return list;
 	}
 
 	@Override
-	public int add(Valet valet) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public int park(Valet valet) throws Exception {
+		stmt = con.prepareStatement("INSERT INTO Valet(ID_VALET,ENTRADA,PLACA_VEICULO) VALUES(?,?,?)");
+		stmt.setInt(1, valet.getIdValet());
+		stmt.setDate(2, valet.getEntrada());
+		stmt.setString(3, valet.getVeiculo().getPlaca());
+		return stmt.executeUpdate();
 	}
 
 	@Override
@@ -61,6 +78,6 @@ public class ValetDAO implements IValetRepositorio{
 	@Override
 	public void close() throws SQLException {
 		con.close();
-		
+
 	}
 }

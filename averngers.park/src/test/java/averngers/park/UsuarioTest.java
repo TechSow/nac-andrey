@@ -37,7 +37,7 @@ public class UsuarioTest {
 	}
 	
 
-	@Test
+	@Ignore
 	public void testGetUsuario() {
 		UsuarioDAO dao = null;
 		try {

@@ -1,4 +1,9 @@
 /* CSS reset */
+
+@font-face{
+	font-family:Avengeance heroic Avenger;
+	src: url("fonte/AVENGEANCE HEROIC AVENGER BD.otf");
+}
 *, *:before, *:after { 
   margin:0px auto;
   padding:0;
@@ -42,6 +47,7 @@ h1:after{
 
 p{
   margin-bottom:15px;
+  font-size:35px;
 }
 
 .content p:first-child{

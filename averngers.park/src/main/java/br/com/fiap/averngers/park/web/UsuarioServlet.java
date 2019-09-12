@@ -20,21 +20,19 @@ public class UsuarioServlet extends HttpServlet {
 		
 		resp.setContentType("text/html;charset=UTF-8");
 		
-<<<<<<< HEAD
-		response.setContentType("text/html;charset=UTF-8");
 		Usuario user = null; 
 		try {
-			user = new UsuarioBO().get(request.getParameter("cpf"));			
+			user = new UsuarioBO().get(req.getParameter("cpf"));			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		request.setAttribute("user", user);
-			
-=======
-		Usuario user = new UsuarioBO().get(req.getParameter("cpf"));
 		req.setAttribute("user", user);
+			
+
 		
->>>>>>> feature/login
+		
+		
+		
 		
 		req.getRequestDispatcher("/usuario.jsp").forward(req,resp);
 	}

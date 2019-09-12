@@ -1,6 +1,5 @@
 package br.com.fiap.averngers.park.dao;
 
-<<<<<<< HEAD
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -97,50 +96,10 @@ public class ValetDAO implements IValetRepositorio {
 		stmt.setDouble(2, preco);
 		stmt.setInt(3, id);
 		return stmt.executeUpdate();
-=======
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
-
-import br.com.fiap.averngers.park.beans.Valet;
-import br.com.fiap.averngers.park.repositorio.IValetRepositorio;
-
-public class ValetDAO implements IValetRepositorio{
-
-
-	@Override
-	public Valet get(int id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Valet> getAllParked() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int add(Valet valet) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int setPayOut(int id, Date saida, double preco) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
->>>>>>> feature/login
 	}
 
 	@Override
 	public void close() throws SQLException {
-<<<<<<< HEAD
 		con.close();
-
-=======
-		// TODO Auto-generated method stub
-		
->>>>>>> feature/login
 	}
 }

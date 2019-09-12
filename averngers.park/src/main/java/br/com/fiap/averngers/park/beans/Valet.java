@@ -1,10 +1,8 @@
 package br.com.fiap.averngers.park.beans;
 
-<<<<<<< HEAD
+
 import java.sql.Date;
-=======
-import java.util.Date;
->>>>>>> feature/login
+
 
 public class Valet {
 	private int idValet;
@@ -14,28 +12,23 @@ public class Valet {
 
 	public Valet() {}
 	
-<<<<<<< HEAD
+
 	public Valet(int idValet, Date entrada, Date saida, double preco, Veiculo veiculo) {
-=======
-	public Valet(int idValet, int idVeiuculo, Date entrada, Date saida, double preco, Veiculo veiculo) {
-		super();
->>>>>>> feature/login
+
 		this.idValet = idValet;
 		this.setVeiculo(veiculo);
 		this.entrada = entrada;
 		this.saida = saida;
 		this.preco = preco;
 	}
-<<<<<<< HEAD
+
 	public Valet(int idValet, Date entrada, Veiculo veiculo) {
 		this.idValet = idValet;
 		this.setVeiculo(veiculo);
 		this.entrada = entrada;
 	}
 	
-=======
 
->>>>>>> feature/login
 	public int getIdValet() {
 		return idValet;
 	}
@@ -76,12 +69,9 @@ public class Valet {
 		this.veiculo = veiculo;
 	}
 	
-<<<<<<< HEAD
+
 	public void setSaidaPreco(Date saida, double preco) {
 		this.saida = saida;
 		this.preco = preco;
 	}
-=======
-	
->>>>>>> feature/login
 }

@@ -23,21 +23,15 @@ public class Veiculo {
 	public void setProprietario(Proprietario proprietario) {
 		this.proprietario = proprietario;
 	}
-<<<<<<< HEAD
+
 	public Veiculo( String placa, String marca, Proprietario proprietario) {
-=======
-	public Veiculo(int idVeiculo, String placa, String marca, Proprietario proprietario) {
->>>>>>> feature/login
 		this.placa = placa;
 		this.marca = marca;
 		this.proprietario = proprietario;
 	}
-<<<<<<< HEAD
+
 	public Veiculo() {
 		super();
 	}
-=======
->>>>>>> feature/login
-	
 	
 }

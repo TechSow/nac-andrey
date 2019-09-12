@@ -32,25 +32,13 @@ public class ProprietarioDAO implements IProprietarioRepositorio {
 			return new Proprietario();
 		}
 	}
-<<<<<<< HEAD
+
 //	@Override
 //	public int kill(String cpf) throws Exception {
 //		stmt = con.prepareStatement("DELETE FROM PROPRIETARIO WHERE CPF_PROPRIETARIO = ?");
 //		stmt.setString(1, cpf);
 //		return stmt.executeUpdate();
 //	}
-=======
-
-	@Override
-	public int kill(String cpf) throws Exception {
-		stmt = con.prepareStatement("DELETE FROM PROPRIETARIO WHERE CPF_PROPRIETARIO = ?");
-		stmt.setString(1, cpf);
-		return stmt.executeUpdate();
-	}
-
-
-
->>>>>>> feature/login
 	@Override
 	public int add(Proprietario p) throws Exception {
 		stmt = con.prepareStatement(
@@ -65,7 +53,3 @@ public class ProprietarioDAO implements IProprietarioRepositorio {
 		con.close();
 	}
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> feature/login

@@ -47,14 +47,18 @@ public class LoginServlet extends HttpServlet{
 	            HttpSession newSession = req.getSession(true);
 
 	            //Cria um limite de tempo para a sessao
-	            newSession.setMaxInactiveInterval(5*60);
+	            newSession.setMaxInactiveInterval(1*60);
+	            String validado = "sim";
+	            newSession.setAttribute("validado", validado);
 
 				/*
 				 * Cookie message = new Cookie("message", "Welcome");
 				 * resp.addCookie(message);
 				 */
 	            
-	            resp.sendRedirect("principal.html");
+	            
+	            
+	            resp.sendRedirect("principal.jsp");
 	        } else {
 	            RequestDispatcher rd = getServletContext().getRequestDispatcher("/Login.html");
 	            PrintWriter out = resp.getWriter();

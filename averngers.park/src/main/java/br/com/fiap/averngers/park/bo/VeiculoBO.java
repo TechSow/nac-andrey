@@ -73,7 +73,7 @@ public class VeiculoBO {
 		}
 
 		if(r == 1) {
-			return "Veículo cadastrado";
+			return "Veículo cadastrado.";
 		}else {
 			return "Houve uma falha por favor, tente novamente mais tarde.";
 		}

@@ -21,8 +21,12 @@ public class UsuarioServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		response.setContentType("text/html;charset=UTF-8");
-		
-		Usuario user = new UsuarioBO().get(request.getParameter("cpf"));
+		Usuario user = null; 
+		try {
+			user = new UsuarioBO().get(request.getParameter("cpf"));			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		request.setAttribute("user", user);
 			
 		

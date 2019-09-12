@@ -36,7 +36,7 @@ public class ProprietarioBO {
 		return proprietario;
 
 	}
-	
+
 	public String add(String cpf, String nome, String email) {
 		if(cpf.isEmpty()) {
 			return "Informe o cpf do proprietário";
@@ -57,8 +57,18 @@ public class ProprietarioBO {
 			return "CPF inválido";
 		}
 		int r = 0;
+		
+		Proprietario validarP =null;
+		try {
+			validarP = this.get(cpf);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		if(validarP.getCpf() == null) {		
+		Proprietario p = new Proprietario(cpf,nome,email);
 		try {			
-			r = pDao.add(new Proprietario(cpf,nome,email));
+			r = pDao.add(p);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -67,6 +77,7 @@ public class ProprietarioBO {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
+		}
 		}
 		if(r == 1) 
 			return "Proprietário cadastrado";

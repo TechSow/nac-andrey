@@ -43,14 +43,15 @@ public class CadastrarServlet extends HttpServlet{
 			try {
 				bo = new UsuarioBO();
 								
-				if (bo.cadastro(cpf, confirma_senha_cad, email, nome) ==1 ) {
-					
+				String resultado = bo.add(nome, email, cpf, senha, confirma_senha_cad);
+				
 					 RequestDispatcher rd = getServletContext().getRequestDispatcher("/cadastro.html");
 					 PrintWriter out = resp.getWriter();
-			         out.println("<font color=white>Novo usuario cadastrado com sucesso.</font>");
+			         out.println("<font color=white>" + resultado +"</font>");
 			         rd.include(req, resp);
 
-				}
+			         
+				
 			} catch (Exception e) {
 
 			}				 		

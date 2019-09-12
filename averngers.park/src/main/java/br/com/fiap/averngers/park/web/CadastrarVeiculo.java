@@ -33,19 +33,25 @@ public class CadastrarVeiculo extends HttpServlet {
 		
 		VeiculoBO bo = null;
 		ProprietarioBO propBO = null;
+		
 		try {
 			
+			String resultadoU =null;
+			String resultadoV =null;
 			
-			propBO.add(cpf, nome, email);
+			propBO = new ProprietarioBO();
+			resultadoU = propBO.add(cpf, nome, email);
 			
 			bo = new VeiculoBO();
-			String resultado = bo.add(placa, marca, cpf);
+			resultadoV = bo.add(placa, marca, cpf);
 			
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/veiculo.html");
 			PrintWriter out = resp.getWriter();
-	        out.println("<font color=white>" + resultado +"</font>");
+	        out.println("<font color=white>" + resultadoV +"</font>");
+	        out.println("</br>");
+	        out.println("<font color=white>" + resultadoU +"</font>");
+
 	        rd.include(req, resp);
-			
 			
 			
 		} catch (Exception e) {

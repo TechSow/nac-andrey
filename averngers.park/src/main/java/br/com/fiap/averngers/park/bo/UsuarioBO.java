@@ -12,8 +12,8 @@ public class UsuarioBO {
 	}
 
 	public boolean validarCpf(String cpf) {
-
-		return UtilsBO.isCpf(cpf.replaceAll("[./-]", ""));
+		String x = cpf.replaceAll("[./-]","");
+		return UtilsBO.isCpf(x);
 
 	}
 

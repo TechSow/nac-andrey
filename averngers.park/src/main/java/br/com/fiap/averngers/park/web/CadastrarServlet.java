@@ -47,7 +47,7 @@ public class CadastrarServlet extends HttpServlet{
 					
 					 RequestDispatcher rd = getServletContext().getRequestDispatcher("/cadastro.html");
 					 PrintWriter out = resp.getWriter();
-			         out.println("<font color=Green>Novo usuario cadastrado com sucesso.</font>");
+			         out.println("<font color=white>Novo usuario cadastrado com sucesso.</font>");
 			         rd.include(req, resp);
 
 				}

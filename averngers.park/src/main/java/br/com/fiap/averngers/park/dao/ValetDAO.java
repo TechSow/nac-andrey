@@ -17,6 +17,7 @@ public class ValetDAO implements IValetRepositorio {
 	private Connection con;
 	private PreparedStatement stmt;
 	private ResultSet rs;
+	private ArrayList<Valet> list;
 
 	public ValetDAO() throws Exception {
 		con = Conexao.conectar();
@@ -38,11 +39,30 @@ public class ValetDAO implements IValetRepositorio {
 			return new Valet();
 		}
 	}
+	@Override
+	public ArrayList<Valet> getByDay(Date data) throws Exception{
+		list = null;
+		stmt = con.prepareStatement("SELECT * FROM Valet WHERE SAIDA IS NOT NULL and PRECO IS NOT NULL ");
+		rs = stmt.executeQuery();
+		VeiculoDAO veiculoDAO = new VeiculoDAO();
+		while(rs.next()) {
+			Veiculo veiculo = veiculoDAO.get(rs.getString("PLACA_VEICULO"));
+			list.add(new Valet(
+					rs.getInt("ID_VALET"),
+					rs.getDate("ENTRADA"),
+					rs.getDate("SAIDA"),
+					(double) rs.getFloat("PRECO"),
+					veiculo
+					));
+		}
+		veiculoDAO.close();
+		return list;
 
+	}
 	@Override
 	public ArrayList<Valet> getAllParked() throws Exception {
-		ArrayList<Valet> list = null;
-		stmt = con.prepareStatement("SELECT * FROM Valet WHERE SAIDA IS NOT NULL and PRECO IS NOT NULL");
+		list = null;
+		stmt = con.prepareStatement("SELECT * FROM Valet WHERE SAIDA IS NULL and PRECO IS NULL");
 		rs = stmt.executeQuery();
 		
 		VeiculoDAO veiculoDAO = new VeiculoDAO();

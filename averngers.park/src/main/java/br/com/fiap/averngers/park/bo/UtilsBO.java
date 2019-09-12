@@ -1,6 +1,11 @@
 package br.com.fiap.averngers.park.bo;
 
 import java.util.InputMismatchException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 
 public class UtilsBO {
 	protected static boolean isCpf(String cpf) {
@@ -59,5 +64,21 @@ public class UtilsBO {
 		} catch (InputMismatchException erro) {
 			return false;
 		}
+	}
+
+	public static boolean isEmail(String email) {
+		boolean result = true;
+		try {
+			InternetAddress emailAddr = new InternetAddress(email);
+			emailAddr.validate();
+		} catch (AddressException ex) {
+			result = false;
+		}
+		return result;
+	}
+	public static boolean isPlaca(String placa) {
+		Pattern pattern = Pattern.compile("[A-Z]{3}-[0-9]{4}");
+		Matcher matcher = pattern.matcher(placa);
+		return matcher.matches();
 	}
 }

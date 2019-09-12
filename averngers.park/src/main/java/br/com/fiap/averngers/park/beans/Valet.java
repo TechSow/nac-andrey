@@ -12,7 +12,11 @@ public class Valet {
 
 	public Valet() {}
 	
-
+	public Valet(int idValet, Date entrada, Veiculo veiculo) {
+		this.idValet = idValet;
+		this.setVeiculo(veiculo);
+		this.entrada = entrada;
+	}
 	public Valet(int idValet, Date entrada, Date saida, double preco, Veiculo veiculo) {
 
 		this.idValet = idValet;
@@ -22,11 +26,7 @@ public class Valet {
 		this.preco = preco;
 	}
 
-	public Valet(int idValet, Date entrada, Veiculo veiculo) {
-		this.idValet = idValet;
-		this.setVeiculo(veiculo);
-		this.entrada = entrada;
-	}
+	
 	
 
 	public int getIdValet() {

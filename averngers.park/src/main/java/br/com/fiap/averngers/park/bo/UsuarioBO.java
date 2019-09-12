@@ -21,7 +21,7 @@ public class UsuarioBO {
 		if (nome.isEmpty()) {
 			return "Insira o nome";
 		}
-		if(nome.length() < 2) {
+		if (nome.length() < 2) {
 			return "O nome tem que ter no mínimo de 3 letras";
 		}
 
@@ -35,7 +35,7 @@ public class UsuarioBO {
 		if (senha.isEmpty()) {
 			return "Insira a senha";
 		}
-		if(senha.length() < 5) {
+		if (senha.length() < 5) {
 			return "A senha tem que ter no mínimo 5 dígitos";
 		}
 		if (confirmarSenha.isEmpty()) {
@@ -49,20 +49,20 @@ public class UsuarioBO {
 		}
 		int r = 0;
 		try {
-			r = uDao.add(new Usuario(nome,email,cpf,senha));
-		}catch(Exception e) {
+			r = uDao.add(new Usuario(nome, email, cpf, senha));
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				uDao.close();
-			}catch(Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
-		if(r == 1) {
+
+		if (r == 1) {
 			return "Usuario cadastrado com sucesso!";
-		}else {
+		} else {
 			return "Houve um erro no processamento, por favor, tente novamente mais tarde";
 		}
 	}
@@ -83,25 +83,20 @@ public class UsuarioBO {
 		return usuario;
 	}
 
-	
-public int login(String email, String senha) throws Exception{
-		
-	
+	public int login(String email, String senha) throws Exception {
+
 		UsuarioDAO dao = new UsuarioDAO();
-		
-		if(dao.login(email, senha) == 1) {
-			
+
+		if (dao.login(email, senha) == 1) {
+
 			return 1;
-		}
-		else {
+		} else {
 			return 0;
 		}
 
 	}
 
-
-
-	public int cadastro(String cpf, String senha, String email, String nome) throws Exception{
+	public int cadastro(String cpf, String senha, String email, String nome) throws Exception {
 
 		Usuario usuario = new Usuario();
 		usuario.setCpf(cpf);
@@ -111,15 +106,13 @@ public int login(String email, String senha) throws Exception{
 
 		UsuarioDAO dao = new UsuarioDAO();
 
-		if(dao.add(usuario) == 1) {
+		if (dao.add(usuario) == 1) {
 
-			return 1;			
-		}else {
-			
+			return 1;
+		} else {
+
 			return 0;
 		}
 	}
-
-
 
 }

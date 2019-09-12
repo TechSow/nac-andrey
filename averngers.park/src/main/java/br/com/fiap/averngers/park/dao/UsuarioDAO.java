@@ -64,7 +64,7 @@ public class UsuarioDAO implements IUsuarioRepositorio {
 
 
 
-        @Override
+    @Override
 	public int login(String email, String senha) throws Exception {
 
 		stmt = con.prepareStatement("SELECT USUARIO_NOME, USUARIO_SENHA FROM USUARIO WHERE USUARIO_EMAIL=? AND USUARIO_SENHA=?");
@@ -75,7 +75,6 @@ public class UsuarioDAO implements IUsuarioRepositorio {
 		if(rs.next()) {
 			return 1;
 		}else {
-
 			return 0;
 		}
 	}

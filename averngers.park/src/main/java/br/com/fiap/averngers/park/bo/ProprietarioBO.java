@@ -36,43 +36,54 @@ public class ProprietarioBO {
 		return proprietario;
 
 	}
-	
+
 	public String add(String cpf, String nome, String email) {
-		if(cpf.isEmpty()) {
+		if (cpf.isEmpty()) {
 			return "Informe o cpf do proprietário";
 		}
-		
-		if(nome.isEmpty()) {
+
+		if (nome.isEmpty()) {
 			return "Informe o nome do proprietário";
 		}
-		if(email.isEmpty()) {
+		if (email.isEmpty()) {
 			return "Informe o email do proprietário";
 		}
-		
-		if(!UtilsBO.isEmail(email)) {
+
+		if (!UtilsBO.isEmail(email)) {
 			return "Email inválido";
 		}
-		
-		if(!UtilsBO.isCpf(cpf)) {
+
+		if (!UtilsBO.isCpf(cpf)) {
 			return "CPF inválido";
 		}
 		int r = 0;
-		try {			
-			r = pDao.add(new Proprietario(cpf,nome,email));
-		}catch(Exception e) {
+
+		Proprietario validarP = null;
+		try {
+			validarP = this.get(cpf);
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		}
+
+		if (validarP.getCpf() == null) {
+			Proprietario p = new Proprietario(cpf, nome, email);
 			try {
-				pDao.close();
-			}catch(Exception e) {
+				r = pDao.add(p);
+			} catch (Exception e) {
 				e.printStackTrace();
+			} finally {
+				try {
+					pDao.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
-		if(r == 1) 
+		if (r == 1)
 			return "Proprietário cadastrado";
 		else
 			return "Aconteceu um erro, por favor, tente novamente mais tarde.";
-		
+
 	}
 
 }

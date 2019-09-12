@@ -24,7 +24,7 @@ public class ValetDAO implements IValetRepositorio {
 	}
 
 	@Override
-	public Valet get(int id) throws Exception {
+	public Valet getById(int id) throws Exception {
 		stmt = con.prepareStatement("SELECT * FROM VALET WHERE ID_VALET = ?");
 		stmt.setInt(1, id);
 		rs = stmt.executeQuery();
@@ -40,7 +40,7 @@ public class ValetDAO implements IValetRepositorio {
 		}
 	}
 	@Override
-	public ArrayList<Valet> getByDay(Date data) throws Exception{
+	public ArrayList<Valet> getByDay() throws Exception{
 		list = null;
 		stmt = con.prepareStatement("SELECT * FROM Valet WHERE SAIDA IS NOT NULL and PRECO IS NOT NULL ");
 		rs = stmt.executeQuery();
